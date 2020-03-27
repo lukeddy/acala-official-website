@@ -1,22 +1,41 @@
 import React from 'react';
+import clsx from 'clsx';
 import twitterIcon from '../assets/twitter.svg';
 import mediumIcon from '../assets/medium.svg';
 // import facebookIcon from '../assets/facebook.svg'
 import linkinIcon from '../assets/linkedin.svg';
-// import wechatIcon from '../assets/wechat.svg';
+import wechatIcon from '../assets/wechat.svg';
+import wechatQRCode from '../assets/wechat-qrcode.jpg';
 import githubIcon from '../assets/github.svg';
 import { Container } from '../ui-components/Container';
 import classes from './Footer.module.css';
+
+const SocialItem = ({ link, icon, img }) => {
+    if (link) {
+        return (
+            <a href={link} target="_blank" rel="noopener noreferrer">
+                <img src={icon} alt={link} />
+            </a>
+        );
+    }
+    if (img) {
+        return (
+            <div>
+                <img src={icon} alt={link} />
+                <img src={img} alt={''} className={clsx(classes.socialMediaItemImg)} />
+            </div>
+        );
+    }
+    return null;
+};
 
 const SocialMedia = ({ list }) => {
     return (
         <ul className={classes.socialMedia}>
             {
-                list.map(({ link, icon }, index) => (
+                list.map((item, index) => (
                     <li className={classes.socialMediaItem} key={`social-media-${index}`}>
-                        <a href={link} target="_blank" rel="noopener noreferrer">
-                            <img src={icon} alt={link} />
-                        </a>
+                        <SocialItem {...item} />
                     </li>
                 ))
             }
@@ -53,7 +72,7 @@ export const Footer = () => {
         // { link: '', icon: facebookIcon },
         { link: 'https://github.com/AcalaNetwork', icon: githubIcon },
         { link: 'https://www.linkedin.com/company/acalanetwork', icon: linkinIcon },
-        // { link: '', icon: wechatIcon },
+        { link: '', icon: wechatIcon, img: wechatQRCode },
     ];
     const links = [
         {

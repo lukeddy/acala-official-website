@@ -50,8 +50,8 @@ export const Partners = () => {
         { name: 'web3Foundation', img: web3Foundation, link: 'https://web3.foundation' },
         { name: 'berkeley', img: berkeley, link: 'https://www.xcelerator.berkeley.edu' },
         { name: 'drf', img: digitalRenaissance, link: 'https://drf.ee' },
-        { name: 'p2pValidator', img: p2pValidator, link: 'https://p2p.org/' },
-        { name: 'hypersphere', img: hypersphere, link: '' },
+        { name: 'p2pValidator', img: p2pValidator, link: 'https://p2p.org' },
+        { name: 'hypersphere', img: hypersphere, link: 'https://www.hypersphere.ventures' },
     ];
 
     return (

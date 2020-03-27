@@ -46,7 +46,6 @@ const Member = React.forwardRef(({ members }, ref) => {
 });
 
 const Controll = ({ onNext, onPrev, prevDisabled, nextDisabled }) => {
-    console.log(prevDisabled, nextDisabled);
     return (
         <div className={classes.control}>
             <button className={clsx(classes.controlBtn, classes.prevBtn, { [classes.controlDisabled]: prevDisabled } )} onClick={onPrev}>
