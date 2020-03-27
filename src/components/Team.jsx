@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import classes from './Team.module.css';
 import clsx from 'clsx';
 import BetteChenPhoto from '../photo/Bette_Chen.svg';
@@ -11,9 +11,9 @@ import JackPlatts from '../photo/Jack_Platts.svg';
 import LaminarLogo from '../assets/laminar-logo-team.svg';
 import PolkaWalletLogo from '../assets/polkawallet-logo-team.svg';
 import Web3FoundationLogo from '../assets/web3-foundation-logo-team.svg';
-import ControllRightArrow from '../assets/control-right-arrow.svg';
 import { Container } from '../ui-components/Container';
 import { ShowAnimation } from '../ui-components/ShowAnimation';
+import { ControllArrow } from '../ui-components/ControllArrow';
 
 const MemberItem = React.forwardRef(({ photo, name, title, icon, company }, ref) => (
     <li className={classes.memberItem} ref={ref}>
@@ -37,7 +37,7 @@ const Member = React.forwardRef(({ members }, ref) => {
 
                             );
                         }
-                        return <MemberItem {...item} />;
+                        return <MemberItem {...item} key={`team-member-${index}`} />;
                     })
                 }
             </ul>
@@ -45,14 +45,15 @@ const Member = React.forwardRef(({ members }, ref) => {
     );
 });
 
-const Controll = ({ onNext, onPrev }) => {
+const Controll = ({ onNext, onPrev, prevDisabled, nextDisabled }) => {
+    console.log(prevDisabled, nextDisabled);
     return (
         <div className={classes.control}>
-            <button className={clsx(classes.controlBtn, classes.prevBtn)} onClick={onPrev}>
-                <img src={ControllRightArrow} alt="arrow-right" />
+            <button className={clsx(classes.controlBtn, classes.prevBtn, { [classes.controlDisabled]: prevDisabled } )} onClick={onPrev}>
+                <ControllArrow />
             </button>
-            <button className={clsx(classes.controlBtn, classes.nextBtn)} onClick={onNext}>
-                <img src={ControllRightArrow} alt="arrow-right" />
+            <button className={clsx(classes.controlBtn, classes.nextBtn, { [classes.controlDisabled]: nextDisabled })} onClick={onNext}>
+                <ControllArrow />
             </button>
         </div>
     );
@@ -110,29 +111,40 @@ export const Team = () => {
         }
     ].sort(() => 0.5 - Math.random()));
     const ref = useRef();
-    const count = useRef(0);
-    const onNext = () => {
+    const [count, setCount] = useState(0);
+    const maxCount = useRef(0);
+
+    useEffect(() => {
         const $list = ref.current;
         if (!$list) return false;
         const $item = $list.querySelector('li');
         const itemWidht = $item.clientWidth;
         const itemMargin = parseInt(window.getComputedStyle($item)['margin-right']);
-        const maxCount = Math.ceil($list.clientWidth / ((itemWidht + itemMargin) * 3)) - 1;
-        if (count.current < maxCount) {
-            count.current = count.current + 1;
-            ref.current.style.transform = `translate3d(-${(itemWidht + itemMargin) * 3 * count.current}px, 0, 0)`;
+        maxCount.current = Math.ceil($list.clientWidth / ((itemWidht + itemMargin) * 3)) - 1;
+    }, [ref.current]);
+
+    useEffect(() => {
+        const $list = ref.current;
+        if (!$list) return false;
+        const $item = $list.querySelector('li');
+        const itemWidht = $item.clientWidth;
+        const itemMargin = parseInt(window.getComputedStyle($item)['margin-right']);
+        ref.current.style.transform = `translate3d(-${(itemWidht + itemMargin) * 3 * count}px, 0, 0)`;
+    }, [count]);
+
+    const onNext = () => {
+        const $list = ref.current;
+        if (!$list) return false;
+        if (count < maxCount.current) {
+            setCount(count + 1);
         }
     };
 
     const onPrev = () => {
         const $list = ref.current;
         if (!$list) return false;
-        const $item = $list.querySelector('li');
-        const itemWidht = $item.clientWidth;
-        const itemMargin = parseInt(window.getComputedStyle($item)['margin-right']);
-        if (count.current > 0) {
-            count.current = count.current - 1;
-            ref.current.style.transform = `translate3d(-${(itemWidht + itemMargin) * 3 * count.current}px, 0, 0)`;
+        if (count > 0) {
+            setCount(count - 1);
         }
     };
 
@@ -141,7 +153,7 @@ export const Team = () => {
             <Container>
                 <div className={classes.title}>Contributors</div>
                 <Member members={members.current} ref={ref} />
-                <Controll onNext={onNext} onPrev={onPrev} />
+                <Controll onNext={onNext} onPrev={onPrev} prevDisabled={count === 0} nextDisabled={count === maxCount.current}/>
             </Container>
         </section>
     );

@@ -126,7 +126,7 @@ const AcalaFeatures = React.forwardRef((_, ref) => {
             <Button className={classes.goToAppsBtn} suffix={'right-arrow'} link="https://apps.acala.network/">
                 <div>
                     GO to App
-                    <div className={classes.testnet}>(Testnet)</div>
+                    <p className={classes.testnet}>(Testnet)</p>
                 </div>
             </Button>
         </div>

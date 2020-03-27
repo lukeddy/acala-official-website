@@ -95,6 +95,24 @@
     transform: rotateY(180deg);
 }
 
+.controlBtn:hover {
+    border: 1px solid #0155ff;
+}
+
+.controlBtn:hover line, .controlBtn:hover polyline {
+    stroke: #0155ff;
+}
+
+.controlDisabled {
+    cursor: not-allowed;
+    border: 1px solid #ecf0f2 !important;
+}
+
+.controlDisabled line, .controlDisabled polyline {
+    stroke: #98a5ae !important;
+}
+
+
 .controlBtn:last-child {
     margin-right: 0;
 }

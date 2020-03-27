@@ -12,9 +12,13 @@
     font-size: 18px;
     text-align: center;
     color: #ffffff;
-    border: 2px solid #ffffff;
-    transition: 200ms ease-in-out;
+    border: 2px solid #3732ff;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+.root p, .root span, .root path, .root line, .root polyline {
+    transition: color 300ms ease;
 }
 
 .suffix {
@@ -28,7 +32,7 @@
 }
 
 .root:hover p, .root:hover span, .root:hover div {
-    color: #0155ff !important;
+    color: inherit;
 }
 
 .root:hover line, .root:hover polyline {
