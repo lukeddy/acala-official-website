@@ -26,6 +26,10 @@
     overflow: hidden;
 }
 
+.item .polychain {
+    width: 200px;
+}
+
 .item:hover {
     transition-delay: 0ms !important;
     transform: translate3d(0, -16px, 0);

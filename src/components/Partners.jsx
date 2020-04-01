@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Partners.module.css';
-import polychain from '../assets/polychain.svg';
+import polychain from '../assets/polychain.gif';
 import kr1 from '../assets/kr1.svg';
 import p2pCaptital from '../assets/p2p-capital.svg';
 import hashkey from '../assets/hashkey.svg';
@@ -18,7 +18,7 @@ import { ShowAnimation } from '../ui-components/ShowAnimation';
 
 const ListItem = React.forwardRef(({ name, img, link, onClick }, ref) => (
     <li className={classes.item} ref={ref} onClick={() => { onClick(link) }}>
-        <img src={img} alt={name} />
+        <img src={img} alt={name} className={classes[name]} />
     </li>
 ));
 const List = ({ list }) => {
