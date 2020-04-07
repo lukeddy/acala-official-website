@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import twitterIcon from '../assets/twitter.svg';
 import mediumIcon from '../assets/medium.svg';
 // import facebookIcon from '../assets/facebook.svg'
+import discourseIcon from '../assets/discourse.svg';
 import linkinIcon from '../assets/linkedin.svg';
 import wechatIcon from '../assets/wechat.svg';
 import wechatQRCode from '../assets/wechat-qrcode.jpg';
@@ -14,14 +15,14 @@ const SocialItem = ({ link, icon, img }) => {
     if (link) {
         return (
             <a href={link} target="_blank" rel="noopener noreferrer">
-                <img src={icon} alt={link} />
+                <img src={icon} alt={link} className={classes.socialMediaIcon}/>
             </a>
         );
     }
     if (img) {
         return (
             <div>
-                <img src={icon} alt={link} />
+                <img src={icon} alt={link} className={classes.socialMediaIcon}/>
                 <img src={img} alt={''} className={clsx(classes.socialMediaItemImg)} />
             </div>
         );
@@ -72,6 +73,7 @@ export const Footer = () => {
         // { link: '', icon: facebookIcon },
         { link: 'https://github.com/AcalaNetwork', icon: githubIcon },
         { link: 'https://www.linkedin.com/company/acalanetwork', icon: linkinIcon },
+        { link: 'https://acala.discourse.group', icon: discourseIcon },
         { link: '', icon: wechatIcon, img: wechatQRCode },
     ];
     const links = [

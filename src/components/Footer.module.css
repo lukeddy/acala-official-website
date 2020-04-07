@@ -32,6 +32,18 @@
     cursor: pointer;
 }
 
+.socialMediaItem > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.socialMediaIcon {
+    width: 20px;
+    height: 20px;
+    object-fit: center;
+}
+
 .socialMediaItem:hover .socialMediaItemImg {
     display: block;
     animation: fade-in 300ms;
