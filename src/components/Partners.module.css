@@ -26,8 +26,8 @@
     overflow: hidden;
 }
 
-.item .polychain {
-    width: 200px;
+.item img {
+    max-width: 80%;
 }
 
 .item:hover {
@@ -56,6 +56,8 @@
     .item img {
         width: 95px;
         height: 95px;
+        max-height: 70%;
+        max-width: 80%;
         object-fit: contain;
     }
 }

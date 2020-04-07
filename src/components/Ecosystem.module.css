@@ -59,6 +59,10 @@
   transform: translate3d(0, -16px, 0);
 }
 
+.ecosystemItem img {
+  max-width: 80%;
+}
+
 @media (max-width: 740px) {
   .root {
     padding-top: 24px;

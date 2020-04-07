@@ -11,6 +11,8 @@ import polkaWorld from '../assets/polka-world.svg';
 import isubsocial from '../assets/isubsocial.svg';
 import anpool from '../assets/anpool.svg';
 import phala from '../assets/phala-long.svg';
+import purestake from '../assets/purestake.png';
+import centrifuge from '../assets/centrifuge.svg'
 import { ShowAnimation } from '../ui-components/ShowAnimation';
 
 const Item = React.forwardRef(({ name, img, link, onClick }, ref) => (
@@ -42,7 +44,9 @@ export const Ecosystem = () => {
         { name: 'polka-world', img: polkaWorld, link: 'https://www.polkaworld.org' },
         { name: 'isubsocial', img: isubsocial, link: 'http://subsocial.network' },
         { name: 'anpool', img: anpool, link: 'https://xanpool.com' },
-        { name: 'phala', img: phala, link: 'https://phala.network' }
+        { name: 'phala', img: phala, link: 'https://phala.network' },
+        { name: 'purestake', img: purestake, link: 'https://www.purestake.com', },
+        { name: 'centrifuge', img: centrifuge, link: 'https://centrifuge.io', }
     ];
     return (
         <section className={classes.root}>
